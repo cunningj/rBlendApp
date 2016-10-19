@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 
 class Login extends React.Component {
     logIn() {
-        formRequest('/authenticate', "POST", {
+        formRequest('/api/authenticate', "POST", {
                 username: this.state.username,
                 password: this.state.password
             },
@@ -22,18 +22,18 @@ class Login extends React.Component {
         return (
             <div>
                 <div>
-                    <div className="container">
+                    <div className="container bkg">
                         <div className="col-sm-6 col-sm-offset-3">
                             <h1><span className="fa fa-sign-in"></span>Therapist Sign-In</h1>
                             <form action="/login" method="post">
                                 <form className= "form-group">
                                     <label className="appSignin" >Username</label>
-                                    <input type="form" className="form-control"
+                                    <input type="email" className="form-control"
                                            onChange={e => this.setState({username: e.target.value})}></input>
                                 </form>
                                 <div className="form-group">
-                                    <label className="appSignin">Password</label>
-                                    <input type="form" className="form-control"
+                                    <label  className="appSignin">Password</label>
+                                    <input type ="password" className="form-control"
                                            onChange={e => this.setState({password: e.target.value})}></input>
                                 </div>
 

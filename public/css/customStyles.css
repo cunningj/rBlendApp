@@ -8,22 +8,18 @@ button {
   display:block;
   margin: auto 0;
   width:100%;
-  margin:10px;
 }
 
 input {
   margin: 10px 0 0 5px;;
-
 }
 
-#logInBkg {
+/*.container .bkg {
   background:#fff!important;
   padding:20px;
   border-radius:5px;
-  width:45%;
-  min-width:200px;
-  margin:0 auto;
-}
+  width:auto;
+}*/
 
 .form-signin {
   max-width: 330px;

@@ -1,5 +1,4 @@
 var express = require("express");
-var app = express();
 var app         = express();
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
@@ -72,12 +71,6 @@ app.get('/setup', function(req, res) {
 // get an instance of the router for api routes
 var apiRoutes = express.Router();
 
-// TODO: route to authenticate a user (POST http://localhost:8080/api/authenticate)
-// API ROUTES -------------------
-
-// get an instance of the router for api routes
-var apiRoutes = express.Router();
-
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res) {
 
@@ -103,18 +96,33 @@ apiRoutes.post('/authenticate', function(req, res) {
           expiresIn: 1440 // expires in 24 hours
         });
 
+        //add cookie to header
+        res.writeHead(200, {'Set-Cookie': 'access_token=' + token});
+
+        //TO DO: for logout route make: 'Set-Cookie': ////
+
         // return the information including token as JSON
-        res.json({
+        res.end(JSON.stringify({
           success: true,
           message: 'Enjoy your token!',
           token: token
-        });
+        }));
       }
-
     }
-
   });
 });
+
+//logout route
+apiRoutes.post('/logout', function(req, res) {
+        //add cookie to header
+        res.writeHead(200, {'Set-Cookie': ""});
+        //TO DO: for logout route make: 'Set-Cookie': ////
+        // return the information including token as JSON
+        res.end(JSON.stringify({
+          success: false,
+          message: 'Logged out!'
+        }));
+    });
 
 //route middleware to verify a token
 apiRoutes.use(function(req, res, next) {
