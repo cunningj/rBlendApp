@@ -1,3 +1,10 @@
+import path from 'path'
+import compression from 'compression'
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+import { match, RouterContext } from 'react-router'
+import routes from './modules/routes'
+
 var express = require("express");
 var app         = express();
 var bodyParser  = require('body-parser');
@@ -6,24 +13,28 @@ var mongoose    = require('mongoose');
 
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // get our config file
-var User   = require('./app/models/user'); // get our mongoose model
+var User   = require('./modules/user'); // get our mongoose model
 
-var webpack  = require('webpack');
-var webpackConfig = require('./webpack.config.js');
-var webpackMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
-var compiler = webpack(webpackConfig);
-var wpMiddleware = webpackMiddleware(compiler,
-									{publicPath: webpackConfig.output.publicPath,
-										contentBase: "./src",
-										stats: {colors:true,
-												timings: true,
-												 hash:false,
-												 chunks:false,
-												 chunkModules:false,
-												 modules:false}});
-app.use(wpMiddleware);
-app.use(webpackHotMiddleware(compiler));
+//var webpack  = require('webpack');
+//var webpackConfig = require('./webpack.config.js');
+//var webpackMiddleware = require('webpack-dev-middleware');
+//var webpackHotMiddleware = require('webpack-hot-middleware');
+//var compiler = webpack(webpackConfig);
+//var wpMiddleware = webpackMiddleware(compiler,
+//									{publicPath: webpackConfig.output.publicPath,
+//										contentBase: "./src",
+//										stats: {colors:true,
+//												timings: true,
+//												 hash:false,
+//												 chunks:false,
+//												 chunkModules:false,
+//												 modules:false}});
+//app.use(wpMiddleware);
+//app.use(webpackHotMiddleware(compiler));
+
+app.use(compression())
+// serve our static stuff like index.css
+app.use(express.static(path.join(__dirname, 'public')))
 
 // =======================
 // configuration =========
@@ -41,12 +52,16 @@ app.use(morgan('dev'));
 
 // routes ======================================================================
 //require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 // basic route
-app.get('/', function(req, res) {
-    res.send('Hello! The API is at http://localhost:' + port + '/api');
-});
+//app.get('/', function(req, res) {
+//    res.send('Hello! The API is at http://localhost:' + port + '/api');
+//});
+
+
+
+
 
 app.get('/setup', function(req, res) {
 
@@ -171,8 +186,42 @@ apiRoutes.get('/users', function(req, res) {
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);
 
+// send all requests to index.html so browserHistory works
+app.get('*', (req, res) => {
+  match({ routes, location: req.url }, (err, redirect, props) => {
+    if (err) {
+      res.status(500).send(err.message)
+    } else if (redirect) {
+      res.redirect(redirect.pathname + redirect.search)
+    } else if (props) {
+      // hey we made it!
+      const appHtml = renderToString(<RouterContext {...props}/>)
+      res.send(renderPage(appHtml))
+    } else {
+      res.status(404).send('Not Found')
+    }
+  })
+})
+
+
+function renderPage(appHtml) {
+  return `
+    <!doctype html public="storage">
+    <html>
+    <meta charset=utf-8/>
+    <title>RBlends for RMens</title>
+    <link rel=stylesheet href=/index.css>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/customStyles.css" rel="stylesheet">
+    <div id=app>${appHtml}</div>
+    <script src="/bundle.js"></script>
+   `
+}
+
 // =======================
 // start the server ======
 // =======================
 app.listen(port);
 console.log('Magic happens at http://localhost:' + port);
+
+

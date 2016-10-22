@@ -3,12 +3,12 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './src/main.js',
-  output: { path: __dirname, filename: 'bundle.js' },
+  entry: './index.js',
+  output: { path: 'public', filename: 'bundle.js', publicPath:'/'},
   module: {
     loaders: [
       {
-        test: /.jsx?$/,
+        test: /.js?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
