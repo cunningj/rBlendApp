@@ -32,9 +32,9 @@ var User   = require('./modules/user'); // get our mongoose model
 //app.use(wpMiddleware);
 //app.use(webpackHotMiddleware(compiler));
 
-app.use(compression())
+app.use(compression());
 // serve our static stuff like index.css
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 
 // =======================
 // configuration =========
@@ -88,12 +88,10 @@ var apiRoutes = express.Router();
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res) {
-
   // find the user
   User.findOne({
     name: req.body.name
   }, function(err, user) {
-
     if (err) throw err;
 
     if (!user) {
@@ -120,7 +118,8 @@ apiRoutes.post('/authenticate', function(req, res) {
         res.end(JSON.stringify({
           success: true,
           message: 'Enjoy your token!',
-          token: token
+          token: token,
+          user: req.body.name
         }));
       }
     }
@@ -131,7 +130,6 @@ apiRoutes.post('/authenticate', function(req, res) {
 apiRoutes.post('/logout', function(req, res) {
         //add cookie to header
         res.writeHead(200, {'Set-Cookie': ""});
-        //TO DO: for logout route make: 'Set-Cookie': ////
         // return the information including token as JSON
         res.end(JSON.stringify({
           success: false,
@@ -195,13 +193,13 @@ app.get('*', (req, res) => {
       res.redirect(redirect.pathname + redirect.search)
     } else if (props) {
       // hey we made it!
-      const appHtml = renderToString(<RouterContext {...props}/>)
+      const appHtml = renderToString(<RouterContext {...props}/>);
       res.send(renderPage(appHtml))
     } else {
       res.status(404).send('Not Found')
     }
   })
-})
+});
 
 
 function renderPage(appHtml) {

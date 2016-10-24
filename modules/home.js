@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from './login.js';
+import {browserHistory} from 'react-router';
+
 //import Logout from './logout.jsx';
 
-class RBlendsApp extends React.Component {
+class Home extends React.Component {
     render() {
         return (<div>
-                I AM THE APP
-                {this.props.children}
+                <h2>Successfully logged in!</h2>
             </div>
         )
     }
 }
 
 
-module.exports = RBlendsApp;
+module.exports = Home;
 //ReactDOM.render(<RBlendsApp/>, document.getElementById('app'));

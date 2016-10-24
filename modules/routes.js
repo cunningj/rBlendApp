@@ -20,11 +20,13 @@
 
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import RBlendsapp from './rblendsapp'
 import Login from './login'
+import Home from './home'
 
 module.exports = (
-    <Route path="/" component={RBlendsapp}>
-        <Route path="/login" component={Login}/>
+    <Route path="/">
+        <IndexRoute component={Login}/>
+        <Route path="login" component={Login}/>
+        <Route path="home" component={Home}/>
     </Route>
 )

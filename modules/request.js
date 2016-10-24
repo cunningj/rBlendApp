@@ -40,7 +40,3 @@ fetch('/users', {
     })
 })
 
-/*function authRequest(url, token, method, body, callback){
- Object.assign({}, {token: token}, body)
- request(url, method, body, callback)
- }
