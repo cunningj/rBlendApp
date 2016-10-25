@@ -15,6 +15,7 @@ var mongoose    = require('mongoose');
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // get our config file
 var User   = require('./modules/user'); // get our mongoose model
+var studentController = require('./modules/studentController');
 
 //var webpack  = require('webpack');
 //var webpackConfig = require('./webpack.config.js');
@@ -55,20 +56,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 // routes ======================================================================
-//require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-//app.use(express.static('public'));
-
-// basic route
-//app.get('/', function(req, res) {
-//    res.send('Hello! The API is at http://localhost:' + port + '/api');
-//});
-
-
-
-
-
 app.get('/setup', function(req, res) {
-
 //create a sample user
   var josh = new User({
     name: 'Josh Quick',
@@ -84,6 +72,8 @@ app.get('/setup', function(req, res) {
     res.json({ success: true });
   });
 });
+
+
 
 // API ROUTES -------------------
 
@@ -141,6 +131,11 @@ apiRoutes.post('/logout', function(req, res) {
           message: 'Logged out!'
         }));
     });
+
+apiRoutes.post('/newStudents', studentController.newStudent);
+//apiRoutes.delete('/deleteStudents', studentController.deleteStudent);
+//apiRoutes.get('/findStudents', studentController.findStudent);
+//apiRoutes.put('/updateStudents', studentController.updateStudent);
 
 //route middleware to verify a token
 apiRoutes.use(function(req, res, next) {

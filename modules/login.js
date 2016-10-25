@@ -24,7 +24,7 @@ class Login extends React.Component {
                 console.log('parsing failed', ex)
             }).then(function (response) {
             if (response.success===true) {
-                browserHistory.push('/home');
+                browserHistory.push('api/home');
             }
         })
     }
