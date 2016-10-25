@@ -9,6 +9,7 @@ var express = require("express");
 var app         = express();
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
+var cookieParser = require('cookie-parser');
 var mongoose    = require('mongoose');
 
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
@@ -31,6 +32,9 @@ var User   = require('./modules/user'); // get our mongoose model
 //												 modules:false}});
 //app.use(wpMiddleware);
 //app.use(webpackHotMiddleware(compiler));
+
+app.use(cookieParser());
+
 
 app.use(compression());
 // serve our static stuff like index.css
@@ -110,7 +114,8 @@ apiRoutes.post('/authenticate', function(req, res) {
         });
 
         //add cookie to header
-        res.writeHead(200, {'Set-Cookie': 'access_token=' + token});
+        //res.writeHead(200);
+        res.cookie('access_token', token, {maxAge:300000});
 
         //TO DO: for logout route make: 'Set-Cookie': ////
 
@@ -141,7 +146,7 @@ apiRoutes.post('/logout', function(req, res) {
 apiRoutes.use(function(req, res, next) {
 
   // check header or url parameters or post parameters for token
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  var token =req.cookies.access_token ||req.body.token || req.query.token || req.headers['x-access-token'];
 
   // decode token
   if (token) {

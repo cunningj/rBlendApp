@@ -8,8 +8,9 @@ class Login extends React.Component {
         var self = this;
         fetch('/api/authenticate', {
             method: 'POST',
+            credentials: 'same-origin',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
