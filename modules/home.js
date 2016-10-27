@@ -20,6 +20,35 @@ class Home extends React.Component {
         this.setState({showModal: true});
     }
 
+    addStudent() {
+        var self = this;
+        fetch('/api/newStudents', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: self.state.name,
+                birthday: self.state.birthday,
+                words: self.state.words,
+                notes: self.state.notes
+            })
+        }).then(function (response) {
+            console.log(response)
+            return response.json()
+        }).catch(function (ex) {
+            console.log('parsing failed', ex)
+        }).then(function (response) {
+            console.log("2nd response")
+            console.log(response)
+            if (response.success === true) {
+                self.setState({showModal: false});
+            }
+        })
+    }
+
     render() {
         return (<div>
                 <div>
@@ -28,7 +57,7 @@ class Home extends React.Component {
                         bsStyle="primary"
                         bsSize="large"
                         onClick={this.open.bind(this)}>
-                        Launch demo modal
+                        Add Students
                     </Button>
 
                     <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
@@ -36,19 +65,25 @@ class Home extends React.Component {
                             <Modal.Title>Modal heading</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-      <h2>hello</h2>
                             <FormGroup bsSize="large">
-                                <FormControl type="text" placeholder="Name" />
-                                <FormControl type="text" placeholder="Birthday" />
-                                <FormControl type="text" placeholder="Gender" />
-                                <FormControl type="text" placeholder="Words" />
-                                <FormControl type="text" placeholder="Notes" />
+                                <FormControl type="text" placeholder="Name"
+                                             onChange={e => this.setState({name: e.target.value})}/>
+                                <FormControl type="text" placeholder="Birthday"
+                                             onChange={e => this.setState({birthday: e.target.value})}/>
+                                <FormControl type="text" placeholder="Words"
+                                             onChange={e => this.setState({words: e.target.value})}/>
+                                <FormControl type="text" placeholder="Notes"
+                                             onChange={e => this.setState({notes: e.target.value})}/>
                             </FormGroup>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.close.bind(this)}>Close</Button>
+                            <Button onClick={this.addStudent.bind(this)}>Submit</Button>
                         </Modal.Footer>
                     </Modal>
+                </div>
+                <div>
+                {this.props.children}
                 </div>
             </div>
         )

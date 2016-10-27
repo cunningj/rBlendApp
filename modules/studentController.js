@@ -9,13 +9,20 @@ function newStudent(req, res) {
         notes:req.body.notes
     });
 
-    // save the sample user
+// save the new student
     student.save(function(err) {
         if (err) throw err;
 
         console.log('Student saved successfully');
-        res.json({ success: true });
+        res.end(JSON.stringify({ success: true }));
     });
+}
+
+// show all students function
+function showAllStudents(req, res) {
+    Student.find(function(err,students) {
+        res.json(students)
+    })
 }
 
 
@@ -23,6 +30,7 @@ function newStudent(req, res) {
 //apiRoutes.get('/findStudents', studentController.findStudent);
 //apiRoutes.put('/updateStudents', studentController.updateStudent);
 
-module.exports = {newStudent};
+module.exports = {newStudent, showAllStudents};
+
 
 

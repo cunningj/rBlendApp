@@ -133,6 +133,9 @@ apiRoutes.post('/logout', function(req, res) {
     });
 
 apiRoutes.post('/newStudents', studentController.newStudent);
+apiRoutes.get('/showAllStudents', studentController.showAllStudents);
+
+
 //apiRoutes.delete('/deleteStudents', studentController.deleteStudent);
 //apiRoutes.get('/findStudents', studentController.findStudent);
 //apiRoutes.put('/updateStudents', studentController.updateStudent);
@@ -180,6 +183,36 @@ apiRoutes.get('/users', function(req, res) {
     res.json(users);
   });
 });
+
+app.use('/protected',
+  function(req, res, next) {
+
+    // check header or url parameters or post parameters for token
+    var token =req.cookies.access_token ||req.body.token || req.query.token || req.headers['x-access-token'];
+
+    // decode token
+    if (token) {
+
+      // verifies secret and checks exp
+      jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+        if (err) {
+          return res.json({ success: false, message: 'Failed to authenticate token.' });
+        } else {
+          // if everything is good, save to request for use in other routes
+          req.decoded = decoded;
+          next();
+        }
+      });
+
+    } else {
+
+      // if there is no token
+      // return an error
+      return res.redirect('/login')
+
+    }
+  })
+
 
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);

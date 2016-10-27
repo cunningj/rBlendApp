@@ -6,11 +6,10 @@ var Schema = mongoose.Schema;
 var studentSchema = new Schema({
     name: String,
     birthday: String,
-    gender: String,
     words:[String],
     notes:String
 });
 
 var Student = mongoose.model('Student', studentSchema);
 
-module.exports = Student
+module.exports = Student;
