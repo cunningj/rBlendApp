@@ -1,18 +1,17 @@
-import Immutable from 'immutable'
 
 function reducer(state = initialState, action){
     switch(action.type){
         case 'logIn':
-            return {loggedIn: true}
+            return {loggedIn: true,
+                    user:     action.user};
         case 'logOut':
-            return {loggedIn: false}
+            return {loggedIn: false};
         default:
             return state;
     }
 }
 
-var initialState = {
-    loggedIn: false
-};
+var initialState = {}
+
 
 module.exports = reducer;

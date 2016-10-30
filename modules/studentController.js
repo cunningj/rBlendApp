@@ -20,10 +20,18 @@ function newStudent(req, res) {
 
 // show all students function
 function showAllStudents(req, res) {
-    Student.find(function(err,students) {
-        res.json(students)
+    Student.find({}, function(err,students) {
+        //all obj grabbed
+        //search through student for name
+        //add name to array
+        //write function takes an array and makes links//in front end
+        var newStudents = students.map(function(item){return item.name;});
+        res.json(newStudents);
+        //res.json(students)
     })
 }
+
+//make names into ol function:
 
 
 //apiRoutes.delete('/deleteStudents', studentController.deleteStudent);

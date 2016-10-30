@@ -1,5 +1,8 @@
-const logIn = {
-    type: 'logIn'
+function logIn(user) {
+    return {
+        type: 'logIn',
+        user
+    }
 }
 
 const logOut = {

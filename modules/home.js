@@ -3,13 +3,27 @@ import ReactDOM from 'react-dom';
 import Login from './login.js';
 import {browserHistory} from 'react-router';
 import {Modal, Button, FormGroup, form, FormControl} from 'react-bootstrap';
-
+import ShowStudents from './showStudents'
+import {connect} from 'react-redux'
 //import Logout from './logout.jsx';
+
+function mapStateToProps(state){
+    return {
+        user: state.user
+    }
+
+}
+
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {showModal: false};
+        this.state = {showModal: false,
+                      allStudents: []};
+    }
+
+    componentWillMount(){
+        this.loadStudents();
     }
 
     close() {
@@ -20,9 +34,14 @@ class Home extends React.Component {
         this.setState({showModal: true});
     }
 
+    submit(){
+        this.addStudent()
+            .then(()=> this.loadStudents())
+    }
+
     addStudent() {
         var self = this;
-        fetch('/api/newStudents', {
+        return fetch('/api/newStudents', {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
@@ -49,20 +68,45 @@ class Home extends React.Component {
         })
     }
 
+    loadStudents(){
+        var self = this;
+        fetch('/api/showAllStudents', {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: null
+        }).then(function(response){
+            console.log(response)
+            return response.json()
+        }).catch(function (ex) {
+            console.log('parsing failed', ex)
+        }).then(function (response) {
+            self.setState({allStudents:response});
+        })
+    }
+
+
     render() {
+        console.log("YO PROPS BE HERE")
         return (<div>
                 <div>
+                    <div>Welcome, {this.props.user}!</div>
+                    <hr/>
 
                     <Button
-                        bsStyle="primary"
+                        className="addStudents"
                         bsSize="large"
+                        bsStyle="success"
                         onClick={this.open.bind(this)}>
                         Add Students
                     </Button>
 
                     <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Modal heading</Modal.Title>
+                        <Modal.Header >
+                            <Modal.Title>Add student information:</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <FormGroup bsSize="large">
@@ -78,17 +122,19 @@ class Home extends React.Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.close.bind(this)}>Close</Button>
-                            <Button onClick={this.addStudent.bind(this)}>Submit</Button>
+                            <Button onClick={this.submit.bind(this)}>Submit</Button>
                         </Modal.Footer>
                     </Modal>
                 </div>
                 <div>
-                {this.props.children}
+                    <ul>
+                <ShowStudents allStudents={this.state.allStudents}/>
+                    </ul>
                 </div>
             </div>
         )
     }
 }
 
-module.exports = Home;
+module.exports = connect(mapStateToProps)(Home);
 //ReactDOM.render(<RBlendsApp/>, document.getElementById('app'));

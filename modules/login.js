@@ -2,6 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import {browserHistory, Link} from 'react-router';
+import { logIn } from './redux/actions'
+import { connect } from 'react-redux'
+
+
+function mapStateToProps(state){
+    return {
+        login: state.logIn
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        setLoginState : function(username){
+            dispatch(logIn(username))
+        }
+    }
+}
+
+const loginConnector = connect(mapStateToProps, mapDispatchToProps)
 
 class Login extends React.Component {
     login() {
@@ -24,7 +43,7 @@ class Login extends React.Component {
                 console.log('parsing failed', ex)
             }).then(function (response) {
             if (response.success===true) {
-                //self.state.loggedIn = true;
+                self.props.setLoginState(response.user);
                 browserHistory.push('/protected/home');
             }
         })
@@ -48,7 +67,6 @@ class Login extends React.Component {
                                     <input type ="password" className="form-control"
                                            onChange={e => this.setState({password: e.target.value})}></input>
                                 </div>
-                                <Link to='/protected/home'>HAXXXOR</Link>
                                 <button onClick = {this.login.bind(this)} type="submit" className="btn btn-warning btn-lg">Login</button>
                         </div>
                     </div>
@@ -59,4 +77,4 @@ class Login extends React.Component {
 }
 
 
-module.exports = Login;
+module.exports = loginConnector(Login);

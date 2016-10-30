@@ -4,4 +4,4 @@ import Immutable from 'immutable'
 
 
 
-module.exports = createStore(reducer)
+module.exports = createStore(reducer);

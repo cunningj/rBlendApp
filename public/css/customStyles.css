@@ -1,7 +1,17 @@
+/*---body style---*/
 body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
+}
+
+/*---button styles---*/
+.addStudents:before {
+  content:"\2b ";
+  font-family: 'Glyphicons Halflings';
+  color:#fff;
+  font-size:11px;
+  padding-right:3px;
 }
 
 button {
@@ -10,17 +20,12 @@ button {
   width:100%;
 }
 
+/*---input styles---*/
 input {
   margin: 10px 0 0 5px;;
 }
 
-/*.container .bkg {
-  background:#fff!important;
-  padding:20px;
-  border-radius:5px;
-  width:auto;
-}*/
-
+/*---form styles---*/
 .form-signin {
   max-width: 330px;
   padding: 15px;
@@ -59,4 +64,11 @@ input {
 label.appSignin {
   margin: 0 0 0 0;
   padding:0;
+}
+
+/*---list styles---*/
+ul li {
+  margin: 0 0 0 -38px;
+  list-style:none;
+  line-height:1.7;
 }
