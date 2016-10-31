@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: '#eval-source-map',
   entry: [ 'whatwg-fetch', './index.js'],
-  output: { path: 'public', filename: 'bundle.js', publicPath:'/'},
+  output: { path: __dirname + '/public', filename: 'bundle.js', publicPath:'/'},
   module: {
     loaders: [
       {

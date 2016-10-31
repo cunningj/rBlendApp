@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from './login.js';
 import {browserHistory} from 'react-router';
-import {Modal, Button, FormGroup, form, FormControl} from 'react-bootstrap';
+import {Modal, Button, FormGroup, form, FormControl, Panel} from 'react-bootstrap';
 import ShowStudents from './showStudents'
 import {connect} from 'react-redux'
 //import Logout from './logout.jsx';
@@ -99,7 +99,7 @@ class Home extends React.Component {
                     <Button
                         className="addStudents"
                         bsSize="large"
-                        bsStyle="success"
+                        bsStyle="default"
                         onClick={this.open.bind(this)}>
                         Add Students
                     </Button>

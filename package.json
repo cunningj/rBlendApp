@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "webpack-dev-server --inline --content-base public/ --history-api-fallback",
-    "start:prod": "webpack && babel-node server.js"
+    "start:dev": "supervisor -- -r 'babel-register' server.js",
+    "start:prod": "webpack & babel-node server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/quickjosh/rBlendApp#readme",
   "dependencies": {
+    "babel-register": "^6.18.0",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",

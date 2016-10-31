@@ -25,8 +25,8 @@ function showAllStudents(req, res) {
         //search through student for name
         //add name to array
         //write function takes an array and makes links//in front end
-        var newStudents = students.map(function(item){return item.name;});
-        res.json(newStudents);
+
+        res.json(students);
         //res.json(students)
     })
 }

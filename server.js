@@ -17,6 +17,25 @@ var mongoose    = require('mongoose');
 var config = require('./config'); // get our config file
 var studentController = require('./modules/studentController');
 var apiRoutes = require('./server/apiRoutes')(app)
+
+var webpack = require('webpack')
+var webpackConfig = require('./webpack.config.js')
+var webpackMiddleware = require('webpack-dev-middleware')
+var webpackHotMiddleware = require('webpack-hot-middleware')
+var compiler = webpack(webpackConfig)
+var wpMiddleware = webpackMiddleware(compiler,
+    {publicPath: webpackConfig.output.publicPath,
+      contentBase: './modules',
+      stats: {colors: true,
+        timings: true,
+        hash: false,
+        chunks: false,
+        chunkModules: false,
+        modules: false}})
+app.use(wpMiddleware)
+app.use(webpackHotMiddleware(compiler))
+
+
 app.use(cookieParser());
 
 
