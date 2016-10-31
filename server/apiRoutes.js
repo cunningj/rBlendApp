@@ -108,7 +108,7 @@ module.exports = function(app) {
 
     apiRoutes.post('/newStudents', studentController.newStudent);
     apiRoutes.get('/showAllStudents', studentController.showAllStudents);
-
+    apiRoutes.put('/editStudents', studentController.editStudents);
 
 // route to show a random message (GET http://localhost:8080/api/)
     apiRoutes.get('/', function (req, res) {

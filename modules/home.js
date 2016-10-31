@@ -7,7 +7,7 @@ import ShowStudents from './showStudents'
 import {connect} from 'react-redux'
 //import Logout from './logout.jsx';
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
         user: state.user
     }
@@ -18,11 +18,13 @@ function mapStateToProps(state){
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {showModal: false,
-                      allStudents: []};
+        this.state = {
+            showModal: false,
+            allStudents: []
+        };
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.loadStudents();
     }
 
@@ -34,7 +36,7 @@ class Home extends React.Component {
         this.setState({showModal: true});
     }
 
-    submit(){
+    submit() {
         this.addStudent()
             .then(()=> this.loadStudents())
     }
@@ -68,38 +70,36 @@ class Home extends React.Component {
         })
     }
 
-    loadStudents(){
-        var self = this;
-        fetch('/api/showAllStudents', {
-            method: 'GET',
-            credentials: 'same-origin',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: null
-        }).then(function(response){
-            console.log(response)
-            return response.json()
-        }).catch(function (ex) {
-            console.log('parsing failed', ex)
-        }).then(function (response) {
-            self.setState({allStudents:response});
-        })
-    }
+    loadStudents() {
+    var self = this;
+    fetch('/api/showAllStudents', {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: null
+    }).then(function (response) {
+        console.log(response)
+        return response.json()
+    }).catch(function (ex) {
+        console.log('parsing failed', ex)
+    }).then(function (response) {
+        self.setState({allStudents: response});
+    })
+}
 
 
     render() {
-        console.log("YO PROPS BE HERE")
+
         return (<div>
                 <div>
-                    <div>Welcome, {this.props.user}!</div>
-                    <hr/>
-
+                    <h3>Welcome, {this.props.user}!</h3>
                     <Button
                         className="addStudents"
-                        bsSize="large"
-                        bsStyle="default"
+                        bsSize="small"
+                        bsStyle="info"
                         onClick={this.open.bind(this)}>
                         Add Students
                     </Button>
@@ -122,13 +122,13 @@ class Home extends React.Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.close.bind(this)}>Close</Button>
-                            <Button onClick={this.submit.bind(this)}>Submit</Button>
+                            <Button className="btn-info" onClick={this.submit.bind(this)}>Submit</Button>
                         </Modal.Footer>
                     </Modal>
                 </div>
                 <div>
                     <ul>
-                <ShowStudents allStudents={this.state.allStudents}/>
+                        <ShowStudents loadStudents={this.loadStudents.bind(this)} allStudents={this.state.allStudents}/>
                     </ul>
                 </div>
             </div>

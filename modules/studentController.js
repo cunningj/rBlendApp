@@ -4,7 +4,6 @@ function newStudent(req, res) {
     var student = new Student({
         name: req.body.name,
         birthday: req.body.birthday,
-        gender: req.body.gender,
         words:req.body.words,
         notes:req.body.notes
     });
@@ -12,7 +11,6 @@ function newStudent(req, res) {
 // save the new student
     student.save(function(err) {
         if (err) throw err;
-
         console.log('Student saved successfully');
         res.end(JSON.stringify({ success: true }));
     });
@@ -31,14 +29,21 @@ function showAllStudents(req, res) {
     })
 }
 
+function editStudents(req, res) {
+    Student.findOneAndUpdate({_id:req.body._id}, req.body, function(err) {
+        if (err) throw err;
+        console.log('Student UPDATED successfully');
+        res.end(JSON.stringify({ success: true }));
+    });
+}
+
 //make names into ol function:
 
 
 //apiRoutes.delete('/deleteStudents', studentController.deleteStudent);
-//apiRoutes.get('/findStudents', studentController.findStudent);
 //apiRoutes.put('/updateStudents', studentController.updateStudent);
 
-module.exports = {newStudent, showAllStudents};
+module.exports = {newStudent, showAllStudents, editStudents};
 
 
 

@@ -5,23 +5,44 @@ body {
   background-color: #eee;
 }
 
+
 /*---button styles---*/
+.modal-footer button {
+  width:auto;
+}
+
+.glyphicon-trash {
+  float:right;
+  font-size:18px;
+  display:inline;
+  margin:-20px 0 0 0!important;
+}
+
+.glyphicon-edit {
+  float:right;
+  font-size:18px;
+  display:inline;
+  margin:-20px 30px 0 0;
+}
+
+.glyphicon-trash:hover,
+.glyphicon-edit:hover {
+  color: #ff5700;
+}
+
 .addStudents:before {
    content:"\2b ";
    font-family: 'Glyphicons Halflings';
    color:#fff;
-   font-size:11px;
+   font-size:10px;
    padding-right:3px;
  }
 
-.addStudents:before {
-  content:"\2b ";
-  font-family: 'Glyphicons Halflings';
-  color:#fff;
-  font-size:11px;
-  padding-right:3px;
+.addStudents {
+  margin: 5px 0 15px 0;
+  width:auto;
+  font-size:15px;
 }
-
 button {
   display:block;
   margin: auto 0;
@@ -30,7 +51,11 @@ button {
 
 .studentHeader {
   text-align:left;
+  float:left;
+  margin: 0 0 10px 0;
 }
+
+
 
 /*---input styles---*/
 input {
@@ -80,9 +105,13 @@ label.appSignin {
 
 /*---list styles---*/
 ul li {
-  margin: 0 0 0 -38px;
+
   list-style:none;
   line-height:1.7;
+}
+
+ul {
+  margin: 0 0 0 -40px;
 }
 
 .dropdown.open>.dropdown-toggle .caret {
