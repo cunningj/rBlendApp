@@ -5,7 +5,6 @@ import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import routes from './modules/routes'
 import { Provider } from 'react-redux'
-import store from './modules/redux/store'
 
 var express = require("express");
 var app         = express();

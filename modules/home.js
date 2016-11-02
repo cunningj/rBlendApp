@@ -112,9 +112,9 @@ class Home extends React.Component {
                             <FormGroup bsSize="large">
                                 <FormControl type="text" placeholder="Name"
                                              onChange={e => this.setState({name: e.target.value})}/>
-                                <FormControl type="text" placeholder="Birthday"
+                                <FormControl type="text" placeholder="Date of Birth"
                                              onChange={e => this.setState({birthday: e.target.value})}/>
-                                <FormControl type="text" placeholder="Words"
+                                <FormControl type="text" placeholder="Target Words"
                                              onChange={e => this.setState({words: e.target.value})}/>
                                 <FormControl type="text" placeholder="Notes"
                                              onChange={e => this.setState({notes: e.target.value})}/>

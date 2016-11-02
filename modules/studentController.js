@@ -37,13 +37,23 @@ function editStudents(req, res) {
     });
 }
 
-//make names into ol function:
+
+// delete the student
+function deleteStudents(req, res) {
+    Student.findOne({_id:req.body._id}, function(err, student) {
+        console.log('ATTEMPTING TO DELETE: ' + req.body._id);
+        if (err) throw err;
+        student.remove(function(err, deleteStudents){
+            console.log('Student deleted successfully');
+            console.log('THIS IS deleteStudents: ' + deleteStudents)
+            res.json(deleteStudents)});
+    })}
 
 
-//apiRoutes.delete('/deleteStudents', studentController.deleteStudent);
+
 //apiRoutes.put('/updateStudents', studentController.updateStudent);
 
-module.exports = {newStudent, showAllStudents, editStudents};
+module.exports = {newStudent, showAllStudents, editStudents, deleteStudents};
 
 
 

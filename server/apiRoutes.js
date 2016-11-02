@@ -27,7 +27,7 @@ module.exports = function(app) {
                     // if user is found and password is right
                     // create a token
                     var token = jwt.sign(user, app.get('superSecret'), {
-                        expiresIn: 1440 // expires in 24 hours
+                        expiresIn: 999999 // expires in 24 hours
                     });
 
                     //add cookie to header
@@ -96,12 +96,14 @@ module.exports = function(app) {
         })
     })
 
-    apiRoutes.post('/logout', function (req, res) {
+    apiRoutes.get('/logout', function (req, res) {
         //add cookie to header
-        res.writeHead(200, {'Set-Cookie': ""});
+        //res.writeHead(200, {'Set-Cookie': ""});
         // return the information including token as JSON
+        var token = "";
+        res.cookie('access_token', token);
         res.end(JSON.stringify({
-            success: false,
+            success: true,
             message: 'Logged out!'
         }));
     });
@@ -109,6 +111,7 @@ module.exports = function(app) {
     apiRoutes.post('/newStudents', studentController.newStudent);
     apiRoutes.get('/showAllStudents', studentController.showAllStudents);
     apiRoutes.put('/editStudents', studentController.editStudents);
+    apiRoutes.delete('/deleteStudents', studentController.deleteStudents);
 
 // route to show a random message (GET http://localhost:8080/api/)
     apiRoutes.get('/', function (req, res) {

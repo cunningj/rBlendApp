@@ -59,9 +59,9 @@ class StudentPanel extends React.Component{
         <div>
             <Panel collapsible expanded={this.state.open}>
                 <ul>
-                    <li>Birthday: {birthday}
+                    <li>Date of Birth: {birthday}
                     </li>
-                    <li>Focus Words: {words}
+                    <li>Target Words: {words}
                     </li>
                     <li>Notes: {notes}
                     </li>

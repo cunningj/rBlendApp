@@ -12,13 +12,19 @@ class EditStudents extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            _id: this.props._id,
-            name : this.props.name,
-            birthday : this.props.birthday,
-            words : this.props.words,
-            notes : this.props.notes,
             showModal: false
         };
+    }
+
+    componentWillReceiveProps(newProps){
+        this.setState({
+            _id: newProps._id,
+            name : newProps.name,
+            birthday : newProps.birthday,
+            words : newProps.words,
+            notes : newProps.notes
+        })
+
     }
 
     editStudents() {
@@ -51,6 +57,39 @@ class EditStudents extends React.Component {
         })
     }
 
+    deleteStudents() {
+        var self = this;
+        return fetch('/api/deleteStudents', {
+            method: 'DELETE',
+            credentials: 'same-origin',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                _id: self.state._id
+            })
+        }).then(function (response) {
+            console.log('FIRST THEN RESPONSE ' + response)
+            return response.json()
+        }).catch(function (ex) {
+            console.log('parsing failed', ex)
+        })
+    }
+
+    confirmDelete() {
+        var answer = confirm('Are you sure you want to delete?');
+        console.log('THIS IS THE ANSWER: ' + answer)
+        if (answer === true){
+            this.delete.bind(this)()
+        }
+    }
+
+    delete() {
+        this.deleteStudents()
+            .then(()=> this.props.loadStudents())
+    }
+
     submit() {
         this.editStudents()
             .then(()=> this.props.loadStudents())
@@ -71,7 +110,7 @@ class EditStudents extends React.Component {
         return (<div>
             <div>
                 <div className="glyphicon glyphicon-edit" onClick={this.open.bind(this)}></div>
-                <div className="glyphicon glyphicon-trash"></div>
+                <div className="glyphicon glyphicon-trash" onClick={this.confirmDelete.bind(this)}></div>
             </div>
 
             <div>
