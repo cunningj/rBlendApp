@@ -2,7 +2,7 @@
 body {
   padding-top: 10px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background: #eff2f4;
 }
 
 
@@ -131,10 +131,18 @@ ul {
   width:auto;
 }
 
+ul li {
+  border-bottom: rgba(255, 255, 255,.3) 1px solid;
+}
+
 ul li a,
 .navbar-inverse .navbar-brand{
   color: rgba(255, 255, 255,.8) !important;
   font-family: 'Roboto Slab', serif;
+}
+
+.navbar-nav {
+  margin:0 -15px
 }
 
 @media (min-width: 768px) {
@@ -211,5 +219,23 @@ ul li a,
   background-color: #ff5700!important;
 }
 
-/*Game styles*/
+/*Login styles*/
+a.createUser {
+  cursor:pointer;
+}
+
+.login {
+  margin: 0 0 10px 0;
+}
+
+.form-group .form-control {
+  margin: 5px 0 0 0;
+}
+
+.signIn {
+  margin-top: 12%;
+  background: rgba(255, 255, 255,.8);
+  padding:20px;
+  border-radius:5px;
+}
 

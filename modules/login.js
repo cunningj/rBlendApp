@@ -4,6 +4,7 @@ import 'whatwg-fetch';
 import {browserHistory, Link} from 'react-router';
 import { logIn } from './redux/actions'
 import { connect } from 'react-redux'
+import CreateUser from './createUser'
 
 
 function mapStateToProps(state){
@@ -53,8 +54,7 @@ class Login extends React.Component {
         return (
             <div>
                 <div>
-                    <div className="container bkg">
-                        <div className="col-sm-6 col-sm-offset-3">
+                        <div className="col-sm-6 col-sm-offset-3 signIn">
                             <h1>Therapist Sign-In</h1>
 
                                 <form className= "form-group">
@@ -67,11 +67,11 @@ class Login extends React.Component {
                                     <input type ="password" className="form-control"
                                            onChange={e => this.setState({password: e.target.value})}></input>
                                 </div>
-                                <button onClick = {this.login.bind(this)} type="submit" className="btn btn-warning btn-lg">Login</button>
+                                <button onClick = {this.login.bind(this)} type="submit" className="btn btn-warning btn-lg login">Login</button>
+< CreateUser/>
                         </div>
                     </div>
                 </div>
-            </div>
         )
     }
 }

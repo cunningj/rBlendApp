@@ -13,7 +13,7 @@ const Story = React.createClass({
     },
 
     handleSelect(selectedIndex, e) {
-
+        alert('selected=' + selectedIndex + ', direction=' + e.direction);
         this.setState({
             index: selectedIndex,
             direction: e.direction

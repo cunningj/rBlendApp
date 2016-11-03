@@ -5,7 +5,7 @@ import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import routes from './modules/routes'
 import { Provider } from 'react-redux'
-
+import User from './modules/user'
 var express = require("express");
 var app         = express();
 var bodyParser  = require('body-parser');
@@ -73,6 +73,24 @@ app.get('/setup', function(req, res) {
     res.json({ success: true });
   });
 });
+
+
+app.post('/createUser', function(req, res) {
+//create a sample user
+  var newUser = new User({
+    name: req.body.name,
+    password: req.body.password,
+    admin: true
+  });
+
+// save the new student
+  newUser.save(function (err) {
+    if (err) throw err;
+    console.log('New User saved successfully!');
+    res.end(JSON.stringify({success: true}));
+  })
+});
+
 
 
 
