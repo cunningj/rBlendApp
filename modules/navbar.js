@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {browserHistory} from 'react-router';
 import { Link } from 'react-router';
-import {Navbar, Header, Toggle, Brand, MenuItem, NavItem, Collapse, NavDropdown, Nav, Button} from 'react-bootstrap';
+import {Navbar, Header, Toggle, Brand, MenuItem, NavItem, Collapse, NavDropdown, Nav, Button, Footer} from 'react-bootstrap';
 import {connect} from 'react-redux'
 import {logOut} from './redux/actions'
 
@@ -70,6 +70,9 @@ class NavbarComponent extends React.Component {
                             <NavItem><Link to="/protected/matchinggame">
                                 <div className="glyphicon glyphicon-th"></div>
                                 Game</Link></NavItem>
+                            <NavItem><Link to="/protected/resources">
+                                <div className="glyphicon glyphicon-link"></div>
+                                Resources</Link></NavItem>
                             <NavItem onClick={this.logout.bind(this)} href="#">
                                 <div className="glyphicon glyphicon-log-out"></div>
                                 Logout</NavItem>
@@ -78,7 +81,6 @@ class NavbarComponent extends React.Component {
                     </Navbar.Collapse>
                 </Navbar>
                 {this.props.children}
-                
             </div>
         )
     }

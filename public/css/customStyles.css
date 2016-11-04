@@ -30,6 +30,7 @@ body {
   color: #ff5700;
 }
 
+.glyphicon-link,
 .glyphicon-log-out,
 .glyphicon-th,
 .glyphicon-book,
@@ -237,5 +238,13 @@ a.createUser {
   background: rgba(255, 255, 255,.8);
   padding:20px;
   border-radius:5px;
+}
+
+a.resourceLinks {
+  color:#666!important;
+}
+
+h3 {
+  text-align:center;
 }
 
