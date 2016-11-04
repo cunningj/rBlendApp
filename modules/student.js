@@ -7,7 +7,8 @@ var studentSchema = new Schema({
     name: String,
     birthday: String,
     words:[String],
-    notes:String
+    notes:String,
+    therapist: String
 });
 
 var Student = mongoose.model('Student', studentSchema);

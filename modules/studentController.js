@@ -5,7 +5,8 @@ function newStudent(req, res) {
         name: req.body.name,
         birthday: req.body.birthday,
         words:req.body.words,
-        notes:req.body.notes
+        notes:req.body.notes,
+        therapist: req.username
     });
 
 // save the new student
@@ -18,7 +19,7 @@ function newStudent(req, res) {
 
 // show all students function
 function showAllStudents(req, res) {
-    Student.find({}, function(err,students) {
+    Student.find({therapist:req.username}, function(err,students) {
         //all obj grabbed
         //search through student for name
         //add name to array

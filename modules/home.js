@@ -54,7 +54,8 @@ class Home extends React.Component {
                 name: self.state.name,
                 birthday: self.state.birthday,
                 words: self.state.words,
-                notes: self.state.notes
+                notes: self.state.notes,
+                therapist: this.props.user
             })
         }).then(function (response) {
             console.log(response)
