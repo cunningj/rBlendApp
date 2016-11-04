@@ -2,7 +2,7 @@ import express from 'express'
 var studentController = require('../modules/studentController');
 var User   = require('../modules/user'); // get our mongoose model
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
-
+var bcrypt = require('bcrypt');
 
 module.exports = function(app) {
     var apiRoutes = express.Router();
@@ -20,7 +20,8 @@ module.exports = function(app) {
             } else if (user) {
 
                 // check if password matches
-                if (user.password != req.body.password) {
+
+                if (bcrypt.compareSync(req.body.password, user.password) === false){
                     res.json({success: false, message: 'Authentication failed. Wrong password.'});
                 } else {
 
@@ -34,7 +35,6 @@ module.exports = function(app) {
                     //res.writeHead(200);
                     res.cookie('access_token', token, {maxAge: 300000});
 
-                    //TO DO: for logout route make: 'Set-Cookie': ////
 
                     // return the information including token as JSON
                     res.end(JSON.stringify({
@@ -49,12 +49,6 @@ module.exports = function(app) {
         });
     });
 
-//logout route
-
-
-//apiRoutes.delete('/deleteStudents', studentController.deleteStudent);
-//apiRoutes.get('/findStudents', studentController.findStudent);
-//apiRoutes.put('/updateStudents', studentController.updateStudent);
 
 //route middleware to verify a token
     apiRoutes.use(function (req, res, next) {

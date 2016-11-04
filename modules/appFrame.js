@@ -17,6 +17,7 @@ export default class AppFrame extends React.Component {
             <NavbarComponent>
                 {this.props.children}
             </NavbarComponent>
+
         </RequireLogin>
 
         )

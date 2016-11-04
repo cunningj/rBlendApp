@@ -78,6 +78,7 @@ class NavbarComponent extends React.Component {
                     </Navbar.Collapse>
                 </Navbar>
                 {this.props.children}
+                
             </div>
         )
     }

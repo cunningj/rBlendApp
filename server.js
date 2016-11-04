@@ -16,6 +16,7 @@ var mongoose    = require('mongoose');
 var config = require('./config'); // get our config file
 var studentController = require('./modules/studentController');
 var apiRoutes = require('./server/apiRoutes')(app)
+var bcrypt = require('bcrypt');
 
 var webpack = require('webpack')
 var webpackConfig = require('./webpack.config.js')
@@ -77,9 +78,11 @@ app.get('/setup', function(req, res) {
 
 app.post('/createUser', function(req, res) {
 //create a sample user
+  var saltRounds = 10;
+  var hash = bcrypt.hashSync(req.body.password, saltRounds)
   var newUser = new User({
     name: req.body.name,
-    password: req.body.password,
+    password: hash,
     admin: true
   });
 
