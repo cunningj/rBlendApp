@@ -1,3 +1,4 @@
+//Component for showing students
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
@@ -6,8 +7,6 @@ import {Modal, Button, FormGroup, form, FormControl, Panel} from 'react-bootstra
 import EditStudents from './editStudents'
 
 //class ShowStudents extends React.Component {
-
-
 class StudentPanel extends React.Component{
 
     constructor(...args) {

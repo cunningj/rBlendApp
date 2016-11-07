@@ -1,3 +1,8 @@
+//Component for the login page
+//Creates forms for sending user/pass to the authenticate route to get issued a valid JWT
+//Also contains newUser modal for creating new account
+//Upon successful login redirects user to "/protected/home"
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';

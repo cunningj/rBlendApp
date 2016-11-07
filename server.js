@@ -1,3 +1,4 @@
+//requiring middleware (handles our authentication checks)
 import path from 'path'
 import compression from 'compression'
 import React from 'react'
@@ -58,6 +59,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 // routes ======================================================================
+// initial route used to set up user and now replaced by 'createUser' below
 app.get('/setup', function(req, res) {
 //create a sample user
   var josh = new User({
@@ -75,9 +77,9 @@ app.get('/setup', function(req, res) {
   });
 });
 
-
+// creatUser route being used by login page with 'New User' functionality
 app.post('/createUser', function(req, res) {
-//create a sample user
+//bCrypt library used to hash password on db.
   var saltRounds = 10;
   var hash = bcrypt.hashSync(req.body.password, saltRounds)
   var newUser = new User({
@@ -86,7 +88,7 @@ app.post('/createUser', function(req, res) {
     admin: true
   });
 
-// save the new student
+// save the new user
   newUser.save(function (err) {
     if (err) throw err;
     console.log('New User saved successfully!');
@@ -95,12 +97,11 @@ app.post('/createUser', function(req, res) {
 });
 
 
-
-
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);
 
 // send all requests to index.html so browserHistory works
+// catches all not matched above this and will redirect to index.html
 app.get('*', (req, res) => {
   res.sendFile(__dirname + '/public/index.html')
 });

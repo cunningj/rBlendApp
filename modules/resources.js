@@ -1,3 +1,4 @@
+//Resource page with external links to URLs
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from './login.js';
@@ -13,32 +14,27 @@ class Resources extends React.Component {
 
         return (<div>
 
-                    <h3>SLP Games & Resources</h3>
+                    <h3>R-Blend App Creators</h3>
                     <ul>
                         <li>
                             <a href="http://bigskyspeechtherapy.com/" className="resourceLinks" target="_blank">
-                                Big Sky Speech Therapy:
-                            </a> <p>Makers of games...</p>
+                                Big Sky Speech Therapy Games
+                            </a> <p>Game Company</p>
                         </li>
                         <li>
-                            <a href="http://www.asha.org/" className="resourceLinks" target="_blank">
-                                ASHA:
-                            </a> <p>American Speech-Language-Hearing Association</p>
-                        </li>
-                        <li>
-                            <a href="http://www.mshaonline.org/" className="resourceLinks" target="_blank">
-                                MSHA:
-                            </a> <p>Montana licensed Audiologists and Speech-Language Pathologists</p>
+                            <a href="http://triciaopstadslp.com/index.html" className="resourceLinks" target="_blank">
+                                Tricia Opstad, MS, CCC-SLP
+                            </a> <p>'Kate the Brave' Author and Editor. Consultant.</p>
                         </li>
                         <li>
                             <a href="https://www.linkedin.com/in/josh-quick-763a159" className="resourceLinks" target="_blank">
-                                Josh Quick:
-                            </a> <p>2016 Montana Code School Student/R-Blend App Creator</p>
+                                Josh Quick
+                            </a> <p>2016 Montana Code School Student</p>
                         </li>
                         <li>
                             <a href="https://www.linkedin.com/in/jacob-cunningham-364451a5" className="resourceLinks" target="_blank">
-                                Jacob Cunningham:
-                            </a> <p>2016 Montana Code School Student/R-Blend App Creator</p>
+                                Jacob Cunningham
+                            </a> <p>2016 Montana Code School Student</p>
                         </li>
                     </ul>
             </div>

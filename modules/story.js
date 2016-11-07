@@ -1,3 +1,4 @@
+//Story page with carousel, images from img folder.
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {browserHistory} from 'react-router';
@@ -60,15 +61,15 @@ const Story = React.createClass({
 
                         <p>They laughed as they dipped the crabmeat in melted butter. The buttery grease dripped from
                             their chins onto their aprons.</p>
+
+                        <p>Suddenly, a crane from the construction across the street crashed into the shack and there
+                            was loud BOOM! The crab shack exploded and the prawns were crushed by the
+                            bricks.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img width={600} height={462} alt="900x500" src="../../img/kateStoryPage4.jpg"/>
                     <Carousel.Caption>
-                        <p>Suddenly, a crane from the construction across the street crashed into the shack and there
-                            was loud BOOM! The crab shack exploded and crumbled. The prawns were crushed by the
-                            bricks.</p>
-
                         <p>All the crab and krill pranced snapping and clapping their claws like cassenettes. The latch
                             on the prawn dungeon gate flung open and the crabs cheered, "This is GREAT!!!"</p>
 

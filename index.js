@@ -1,6 +1,6 @@
-//import Hello from './hello.jsx';
-//import RBlendsApp from './rblendsapp.jsx';
-
+//Renders our exported routes into the app ID
+//Provider is present to maintain front end logged-in
+//browserHistory creates informative URLs
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'

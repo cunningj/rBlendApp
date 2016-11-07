@@ -1,3 +1,5 @@
+//Redux reducer
+//Manages state of user logging in or out
 
 function reducer(state = initialState, action){
     switch(action.type){

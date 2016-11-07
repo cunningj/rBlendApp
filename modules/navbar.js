@@ -1,3 +1,4 @@
+//This is a navbar with logout and page links
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {browserHistory} from 'react-router';

@@ -1,3 +1,8 @@
+//Uses fetch to check logged in status
+//If response is true children are rendered
+//If response is false user is redirected to login page
+//Redux utilized to manage loggedIn state
+
 import React from 'react';
 const Router = require('react-router');
 import { connect } from 'react-redux'

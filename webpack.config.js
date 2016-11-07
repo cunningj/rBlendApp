@@ -1,4 +1,5 @@
-
+//Webpack is a module bundler. It takes in a bunch of assets (ie. source, images, markup, CSS, ...)
+// and turns that into something you can provide to the client web page.
 var path = require('path');
 var webpack = require('webpack');
 

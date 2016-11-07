@@ -1,3 +1,6 @@
+//Component that contains modal for adding new students
+//Loads students to populate user's page if students created and saved
+//Mongoose schema utilized to format student document data
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from './login.js';

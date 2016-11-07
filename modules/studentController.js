@@ -1,3 +1,5 @@
+//Contains CRUD functions for all student actions
+//Communicates with Mongo DB
 var Student = require("./student");
 
 function newStudent(req, res) {

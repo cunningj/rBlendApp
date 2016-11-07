@@ -1,3 +1,4 @@
+//Component for editing and deleting students
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
@@ -6,8 +7,6 @@ import ShowStudents from './showStudents'
 import {Modal, Button, FormGroup, form, FormControl, Panel} from 'react-bootstrap';
 
 //class ShowStudents extends React.Component {
-
-
 class EditStudents extends React.Component {
     constructor(props) {
         super(props);

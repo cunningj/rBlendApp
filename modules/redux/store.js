@@ -1,3 +1,5 @@
+//Redux store for holding entire state tree for user being logged in
+
 import { createStore } from 'redux'
 import reducer from './reducer'
 import Immutable from 'immutable'

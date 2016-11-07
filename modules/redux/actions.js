@@ -1,3 +1,5 @@
+//Redux actions for login and logout
+
 function logIn(user) {
     return {
         type: 'logIn',

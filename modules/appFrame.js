@@ -1,3 +1,7 @@
+//Main component in the "protected" path
+//Utilizes the RequireLogin component to grant access to children pages/components
+//Similar authentication check/logic as the server performs
+
 import RequireLogin from './RequireLogin'
 import NavbarComponent from './navbar'
 import React from 'react'

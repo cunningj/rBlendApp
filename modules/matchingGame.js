@@ -4,6 +4,7 @@ import {browserHistory} from 'react-router';
 var _ = require('lodash');
 
 //requires lodash, react, reactDOM
+//Component for matching game imported from codepen and customized http://codepen.io/larryarmstrong/pen/dXXMvN
 
 const uniqueCards = ['pig','fish','cactus','corn','shroom'];
 const numCardsToMatch = 2;

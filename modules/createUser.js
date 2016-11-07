@@ -1,3 +1,4 @@
+//Component creates new user
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Modal, Button, FormGroup, form, FormControl, Panel} from 'react-bootstrap';

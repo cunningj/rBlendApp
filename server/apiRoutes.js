@@ -1,3 +1,4 @@
+//All routes prepended with /api require a valid web token for user to access them.
 import express from 'express'
 var studentController = require('../modules/studentController');
 var User   = require('../modules/user'); // get our mongoose model
@@ -7,7 +8,7 @@ var bcrypt = require('bcrypt');
 module.exports = function(app) {
     var apiRoutes = express.Router();
 
-// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+//route to authenticate a user (POST http://localhost:8080/api/authenticate)
     apiRoutes.post('/authenticate', function (req, res) {
         // find the user
         User.findOne({
@@ -20,7 +21,6 @@ module.exports = function(app) {
             } else if (user) {
 
                 // check if password matches
-
                 if (bcrypt.compareSync(req.body.password, user.password) === false){
                     res.json({success: false, message: 'Authentication failed. Wrong password.'});
                 } else {
@@ -102,6 +102,7 @@ module.exports = function(app) {
         }));
     });
 
+//these are our CRUD functions imported from studentController.js -- create read update delete
     apiRoutes.post('/newStudents', studentController.newStudent);
     apiRoutes.get('/showAllStudents', studentController.showAllStudents);
     apiRoutes.put('/editStudents', studentController.editStudents);
