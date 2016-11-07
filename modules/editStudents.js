@@ -11,7 +11,8 @@ class EditStudents extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showModal: false
+            showModal: false,
+            showDeleteModal: false
         };
     }
 
@@ -73,6 +74,12 @@ class EditStudents extends React.Component {
             return response.json()
         }).catch(function (ex) {
             console.log('parsing failed', ex)
+        }).then(function (response) {
+            console.log("2nd response")
+            console.log(response)
+            if (response.success === true) {
+                self.setState({showDeleteModal: false});
+            }
         })
     }
 
@@ -102,39 +109,58 @@ class EditStudents extends React.Component {
         this.setState({showModal: true});
     }
 
+    closeDeleteModal() {
+        this.setState({showDeleteModal: false});
+    }
+
+    openDeleteModal() {
+        this.setState({showDeleteModal: true});
+    }
+
 
     render() {
         console.log('PROPS FROM EDIT STUDENTS',this.props);
         const {_id, name, birthday, notes, words} = this.props
         return (<div>
-            <div>
-                <div className="glyphicon glyphicon-edit" onClick={this.open.bind(this)}></div>
-                <div className="glyphicon glyphicon-trash" onClick={this.confirmDelete.bind(this)}></div>
-            </div>
+                <div>
+                    <div className="glyphicon glyphicon-edit" onClick={this.open.bind(this)}></div>
+                    <div className="glyphicon glyphicon-trash" onClick={this.openDeleteModal.bind(this)}></div>
+                </div>
+                <div>
+                    <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+                        <Modal.Header >
+                            <Modal.Title>Edit student information:</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <FormGroup bsSize="large">
+                                <FormControl type="text"  value={this.state.name}
+                                             onChange={e => this.setState({name: e.target.value})}/>
+                                <FormControl type="text"  value={this.state.birthday}
+                                             onChange={e => this.setState({birthday: e.target.value})}/>
+                                <FormControl type="text" value={this.state.words}
+                                             onChange={e => this.setState({words: e.target.value})}/>
+                                <FormControl type="text"  value={this.state.notes}
+                                             onChange={e => this.setState({notes: e.target.value})}/>
+                            </FormGroup>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button onClick={this.close.bind(this)}>Close</Button>
+                            <Button className="btn-info" onClick={this.submit.bind(this)}>Submit</Button>
+                        </Modal.Footer>
+                    </Modal>
+                </div>
 
-            <div>
-            <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-                <Modal.Header >
-                    <Modal.Title>Edit student information:</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <FormGroup bsSize="large">
-                        <FormControl type="text"  value={this.state.name}
-                                     onChange={e => this.setState({name: e.target.value})}/>
-                        <FormControl type="text"  value={this.state.birthday}
-                                     onChange={e => this.setState({birthday: e.target.value})}/>
-                        <FormControl type="text" value={this.state.words}
-                                     onChange={e => this.setState({words: e.target.value})}/>
-                        <FormControl type="text"  value={this.state.notes}
-                                     onChange={e => this.setState({notes: e.target.value})}/>
-                    </FormGroup>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={this.close.bind(this)}>Close</Button>
-                    <Button className="btn-info" onClick={this.submit.bind(this)}>Submit</Button>
-                </Modal.Footer>
-            </Modal>
-            </div>
+                <div>
+                    <Modal show={this.state.showDeleteModal} onHide={this.closeDeleteModal.bind(this)}>
+                        <Modal.Header >
+                            <Modal.Title>Are you sure you want to delete <span className="nameStudent">' {this.props.name} '</span>?</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Footer>
+                            <Button onClick={this.closeDeleteModal.bind(this)}>Cancel</Button>
+                            <Button className="btn-info" onClick={this.delete.bind(this)}>Delete</Button>
+                        </Modal.Footer>
+                    </Modal>
+                </div>
             </div>
 
         )
@@ -144,5 +170,4 @@ class EditStudents extends React.Component {
 
 
 module.exports = EditStudents;
-
 

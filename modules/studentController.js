@@ -48,11 +48,12 @@ function deleteStudents(req, res) {
         if (err) throw err;
         student.remove(function(err, deleteStudents){
             console.log('Student deleted successfully');
-            console.log('THIS IS deleteStudents: ' + deleteStudents)
-            res.json(deleteStudents)});
+            console.log('THIS IS deleteStudents: ' + deleteStudents);
+            //res.json(deleteStudents)});
+            res.end(JSON.stringify({ success: true }));
     })}
 
-
+    )}
 
 //apiRoutes.put('/updateStudents', studentController.updateStudent);
 
