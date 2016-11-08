@@ -229,14 +229,19 @@ a.createUser {
   margin: 0 0 10px 0;
 }
 
-.form-group .form-control {
-  margin: 5px 0 0 0;
+.FormGroup {
+  margin: 5px 0 10px 0!important;
+}
+
+input.FormControl {
+  width:100%!important;
+  margin:5px 0 0 0;
 }
 
 .signIn {
   margin-top: 12%;
   background: rgba(255, 255, 255,.8);
-  padding:20px;
+  padding:0 20px 20px 20px;
   border-radius:5px;
 }
 
@@ -249,5 +254,60 @@ h3 {
 }
 
 span.nameStudent {
+}
+
+.signInLogo {
+  margin:0 auto -10px auto;
+}
+
+.btn-warning {
+  background-color:#EF802F;
+}
+
+.btn-warning:hover {
+  background-color: #d46c2e;
+}
+
+.btn-warning:focus {
+  background-color: #b75c29!important;
+}
+
+.signIn h1 {
+  color:#0F3152;
+  font-size:28px;
+  margin:20px 0 5px 0;
+}
+
+.signIn input {
+  margin:0;
+}
+
+.has-error .form-control {
+  background-color: rgba(255, 0, 0,.04);
+  margin:0;
+}
+
+label.appSignin {
+  margin:10px 0 5px 0;
+}
+
+.alert.alertLog {
+  padding:0!important;
+  margin:10px 0 0 0;
+}
+
+.modal-footer.modalAlert {
+  padding:0;
+}
+
+.modal-footer.modalAlert p{
+  font-size:16px;
+  text-align: left;
+  margin:5px 8px 0 10px;
+  display:inline;
+}
+
+.modal-footer.modalAlert button.btn {
+  margin:10px 5px!important;
 }
 

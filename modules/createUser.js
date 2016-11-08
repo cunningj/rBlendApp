@@ -1,7 +1,7 @@
 //Component creates new user
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Modal, Button, FormGroup, form, FormControl, Panel} from 'react-bootstrap';
+import {Modal, Button, FormGroup, form, FormControl, Panel, Alert} from 'react-bootstrap';
 import 'whatwg-fetch';
 import {browserHistory, Link} from 'react-router';
 
@@ -11,7 +11,8 @@ class CreateUser extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            showModal: false
+            showModal: false,
+            alertVisible: false
         };
     }
 
@@ -49,14 +50,31 @@ class CreateUser extends React.Component{
             console.log("2nd response")
             console.log(response)
             if (response.success === true) {
-                self.setState({showModal: false})
-                alert('User Created Successfully! Please Log In!');
+                self.setState({alertVisible: true})
+                //self.setState({showModal: false})
+                //alert('User Created Successfully! Please Log In!');
             }
         })
     }
 
+    showAlert(){
+        if(this.state.alertVisible) {
+            return (
+                <Alert bsStyle="success" className="alertLog">
+                    <p>User Created Successfully! Please Log In!</p>
+                        <Button onClick={this.afterShowAlert.bind(this)}>OK</Button>
+                </Alert>
+            )
+        }
+    }
+
+    afterShowAlert(){
+        this.setState({showModal: false, alertVisible: false})
+    }
+
 
     render() {
+        var self = this;
         return (
             <div>
             <Link onClick = {this.open.bind(this)} className="createUser">New User?</Link>
@@ -73,9 +91,14 @@ class CreateUser extends React.Component{
                  onChange={e => this.setState({password: e.target.value})}/>
 </FormGroup>
 </Modal.Body>
-<Modal.Footer>
+<Modal.Footer className="modalAlert">
     <Button onClick={this.close.bind(this)}>Close</Button>
     <Button className="btn-info" onClick={this.submit.bind(this)}>Submit</Button>
+
+
+    <div>{self.showAlert()}</div>
+
+
 </Modal.Footer>
 </Modal>
         </div>

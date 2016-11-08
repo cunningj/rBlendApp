@@ -10,6 +10,7 @@ import {browserHistory, Link} from 'react-router';
 import { logIn } from './redux/actions'
 import { connect } from 'react-redux'
 import CreateUser from './createUser'
+import {Image, form, ValidationState, FormControl, Button, Input, FormGroup} from 'react-bootstrap';
 
 
 function mapStateToProps(state){
@@ -29,6 +30,14 @@ function mapDispatchToProps(dispatch){
 const loginConnector = connect(mapStateToProps, mapDispatchToProps)
 
 class Login extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            amILoggedIn: null
+        };
+    }
+
     login() {
         var self = this;
         fetch('/api/authenticate', {
@@ -48,30 +57,37 @@ class Login extends React.Component {
             }).catch(function (ex) {
                 console.log('parsing failed', ex)
             }).then(function (response) {
-            if (response.success===true) {
+            if (response.success===false) {
+                self.setState({amILoggedIn: false});
+            } else if (response.success===true) {
+                console.log("SELF PROPS SETLOGINSTATE SUCCESS: " + self.props.setLoginState);
                 self.props.setLoginState(response.user);
                 browserHistory.push('/protected/home');
             }
         })
     }
 
+
     render() {
+        console.log("THIS IS THE PROPS: " + this.state);
         return (
             <div>
                 <div>
                         <div className="col-sm-6 col-sm-offset-3 signIn">
+                            <Image src="img/rBlend_logo-01.png" responsive className="signInLogo"/>
                             <h1>Therapist Sign-In</h1>
 
-                                <form className= "form-group">
+                                <form>
+                                    <FormGroup  validationState={this.state.amILoggedIn === false ? "error" : null}>
                                     <label className="appSignin" >Username</label>
-                                    <input type="email" className="form-control"
-                                           onChange={e => this.setState({username: e.target.value})}></input>
-                                </form>
-                                <div className="form-group">
+                                    <FormControl type="email"className="input"
+                                           onChange={e => this.setState({username: e.target.value, amILoggedIn: null})}></FormControl>
+
                                     <label  className="appSignin">Password</label>
-                                    <input type ="password" className="form-control"
-                                           onChange={e => this.setState({password: e.target.value})}></input>
-                                </div>
+                                    <FormControl type ="password"
+                                           onChange={e => this.setState({password: e.target.value, amILoggedIn: null})}></FormControl>
+                                    </FormGroup>
+                                </form>
                                 <button onClick = {this.login.bind(this)} type="submit" className="btn btn-warning btn-lg login">Login</button>
 < CreateUser/>
                         </div>
