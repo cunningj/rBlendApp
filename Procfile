@@ -1,1 +1,1 @@
-web: webpack & .node_modules/.bin/babel-node server.js
+web: webpack & ./node_modules/.bin/babel-node server.js
