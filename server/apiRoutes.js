@@ -28,7 +28,7 @@ module.exports = function(app) {
                     // if user is found and password is right
                     // create a token
                     var token = jwt.sign(user, app.get('superSecret'), {
-                        expiresIn: 999999 // expires in 24 hours
+                        expiresIn: "10h" // expires in 24 hours
                     });
 
                     //add cookie to header

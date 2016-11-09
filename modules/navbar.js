@@ -1,9 +1,9 @@
-//This is a navbar with logout and page links
+//This is a navbar with logout and page link
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {browserHistory} from 'react-router';
 import { Link } from 'react-router';
-import {Navbar, Header, Toggle, Brand, MenuItem, NavItem, Collapse, NavDropdown, Nav, Button, Footer} from 'react-bootstrap';
+import {Image, Navbar, Header, Toggle, Brand, MenuItem, NavItem, Collapse, NavDropdown, Nav, Button, Footer} from 'react-bootstrap';
 import {connect} from 'react-redux'
 import {logOut} from './redux/actions'
 
@@ -56,7 +56,7 @@ class NavbarComponent extends React.Component {
                 <Navbar inverse collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#">R-Blend App</a>
+                           Kate's R-Blend Adventure
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>

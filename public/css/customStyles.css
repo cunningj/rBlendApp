@@ -139,10 +139,14 @@ ul li {
   border-bottom: rgba(255, 255, 255,.3) 1px solid;
 }
 
-ul li a,
-.navbar-inverse .navbar-brand{
-  color: rgba(255, 255, 255,.8) !important;
-  font-family: 'Roboto Slab', serif;
+ul li a {
+    color: rgba(255, 255, 255,.8) !important;
+    font-family: 'Roboto Slab', serif;
+  }
+
+ul li a:hover {
+  color: rgba(255, 255, 255,1) !important;
+  text-decoration:underline!important;
 }
 
 .navbar-nav {
@@ -246,10 +250,26 @@ input.FormControl {
   border-radius:5px;
 }
 
-a.resourceLinks {
-  color:#666!important;
+ul li .resourceLinks {
 }
 
+img.cardContainer {
+  padding:10px 0;
+}
+
+ul.resourceList {
+  color:#666!important;
+  margin:-63px 0 0 0;
+  max-width:205px;
+  font-size:.8em!important;
+  padding:0 0 0 31px;
+}
+
+.cardContainer {
+  max-width:100%;
+  margin:0 auto;
+  height:auto;
+}
 h3 {
   text-align:center;
 }
@@ -312,3 +332,28 @@ label.appSignin {
   margin:10px 5px!important;
 }
 
+.navbar-brand  {
+  color:#fff!important;
+  opacity:1;
+  font-size:17px;
+}
+
+span.rBlendType {
+  color:#b75c29;
+  font-weight:bolder;
+}
+
+.cardResContainer {
+  max-width:55%;
+  margin:0 auto;
+  display:block;
+  height:auto;
+}
+
+.cardResource {
+  max-width:100%;
+  height:auto;
+  display:inline-block;
+  float:left;
+  margin:0 auto;
+}

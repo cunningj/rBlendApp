@@ -156,8 +156,8 @@ body::after {
   justify-content: center; }
 
 .card {
-  width: 198px;
-  height: 270px;
+  width: 128px;
+  height: 200px;
   text-align: center;
   transition: all .2s;
   perspective: 800;
@@ -196,9 +196,17 @@ body::after {
   align-items: center;
   justify-content: center; }
 
+.card__front:after {
+  content: url("../img/crabIcon_back.png");
+  position: absolute;
+  top: 72px;
+  left: 5%;
+  right: 5%;
+  opacity:.75;
+}
+
 .card__front {
   background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);
-  overflow: hidden;
   z-index: 1; }
   .card__front::before {
     background: repeating-linear-gradient(310deg, black, black 10px, white 10px, white 20px);
