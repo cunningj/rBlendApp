@@ -33,7 +33,7 @@ module.exports = function(app) {
 
                     //add cookie to header
                     //res.writeHead(200);
-                    res.cookie('access_token', token, {maxAge: 300000});
+                    res.cookie('access_token', token, {maxAge: 9000000});
 
 
                     // return the information including token as JSON
