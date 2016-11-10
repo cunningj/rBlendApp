@@ -5,7 +5,7 @@ body {
   padding-top: 10px;
   padding-bottom: 40px;
   background: #eff2f4;
-  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -141,7 +141,7 @@ ul li {
 
 ul li a {
     color: rgba(255, 255, 255,.8) !important;
-    font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
 ul li a:hover {
@@ -336,6 +336,7 @@ label.appSignin {
   color:#fff!important;
   opacity:1;
   font-size:17px;
+  font-family:'Roboto Slab', Arial, Helvetica, sans-serif;
 }
 
 span.rBlendType {
